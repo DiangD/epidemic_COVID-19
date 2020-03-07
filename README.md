@@ -17,6 +17,6 @@
 #### 部署方式
 1. 管理工具：Gradle
 2. 数据库：MySql 8.0
-3. 执行init.sql建表
+3. 执行init.sql建表(src/main/resources/sql/init.sql)
 4. 启动项目，log输出爬虫启动成功则成功启动
 
