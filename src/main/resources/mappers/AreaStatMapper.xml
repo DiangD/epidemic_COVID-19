@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzh.epidemic.mapper.AreaStatMapper">
+    <insert id="addAreaStat" parameterType="AreaStat">
+        replace into province_info (`locationId`, `provinceName`, `provinceShortName`, `currentConfirmedCount`,
+                                    `confirmedCount`, `suspectedCount`, `curedCount`, `deadCount`,
+                                    `comment`, `statisticsData`)
+        values (#{areaStat.locationId}, #{areaStat.provinceName}, #{areaStat.provinceShortName},
+                #{areaStat.currentConfirmedCount}, #{areaStat.confirmedCount}, #{areaStat.suspectedCount},
+                #{areaStat.curedCount}, #{areaStat.deadCount},
+                #{areaStat.comment},
+                #{areaStat.statisticsData})
+
+    </insert>
+
+    <insert id="addAreaStatList" parameterType="list">
+        replace into province_info (`locationId`, `provinceName`, `provinceShortName`, `currentConfirmedCount`,
+        `confirmedCount`, `suspectedCount`, `curedCount`, `deadCount`,
+        `comment`, `statisticsData`)
+        values
+        <foreach collection="areaStats" item="areaStat" index="index" separator=",">
+            (#{areaStat.locationId}, #{areaStat.provinceName}, #{areaStat.provinceShortName},
+            #{areaStat.currentConfirmedCount}, #{areaStat.confirmedCount}, #{areaStat.suspectedCount},
+            #{areaStat.curedCount}, #{areaStat.deadCount},
+            #{areaStat.comment},
+            #{areaStat.statisticsData})
+        </foreach>
+    </insert>
+    <select id="selectAll" resultType="com.qzh.epidemic.entity.AreaStat">
+        select * from province_info order by currentConfirmedCount desc
+    </select>
+    <select id="getProvinceNameById" resultType="java.lang.String">
+        select provinceName from province_info where locationId = #{locationId}
+    </select>
+    <select id="getAreaStatById" resultType="com.qzh.epidemic.entity.AreaStat">
+        select * from province_info where locationId = #{locationId}
+    </select>
+    <select id="getProvinceNameAndIdList" resultType="com.qzh.epidemic.entity.AreaStat">
+        select provinceShortName,locationId from province_info
+    </select>
+</mapper>

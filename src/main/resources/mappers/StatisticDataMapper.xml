@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzh.epidemic.mapper.StatisticDataMapper">
+    <insert id="addStatisticData" parameterType="StatisticData">
+        insert into statistic_data
+        (`confirmedCount`, `confirmedIncr`, `curedCount`, `curedIncr`, `currentConfirmedCount`,
+         `currentConfirmedIncr`, `dateId`, `deadCount`, `deadIncr`, `provinceId`)
+        values (#{statisticData.confirmedCount}, #{statisticData.confirmedIncr}, #{statisticData.curedCount},
+                #{statisticData.curedIncr}, #{statisticData.currentConfirmedCount},
+                #{statisticData.currentConfirmedIncr},
+                #{statisticData.dateId}, #{statisticData.deadCount}, #{statisticData.deadIncr},
+                #{statisticData.provinceId})
+    </insert>
+
+    <insert id="addStatisticDataList" parameterType="list">
+        insert into statistic_data
+        (`confirmedCount`, `confirmedIncr`, `curedCount`, `curedIncr`, `currentConfirmedCount`,
+        `currentConfirmedIncr`, `dateId`, `deadCount`, `deadIncr`,`provinceId`)
+        values
+        <foreach collection="statisticDataList" item="statisticData" index="index" separator=",">
+            (#{statisticData.confirmedCount}, #{statisticData.confirmedIncr}, #{statisticData.curedCount},
+            #{statisticData.curedIncr}, #{statisticData.currentConfirmedCount},
+            #{statisticData.currentConfirmedIncr},
+            #{statisticData.dateId}, #{statisticData.deadCount}, #{statisticData.deadIncr}, #{statisticData.provinceId})
+        </foreach>
+    </insert>
+    <select id="getLatestDateId" resultType="int">
+        select max(dateId)
+        from statistic_data where provinceId = #{provinceId}
+    </select>
+
+    <select id="getRowsCount" resultType="int">
+        select count(*)
+        from statistic_data
+    </select>
+    <select id="getLatestCurrentConfirmCountByProvinceId" resultType="java.lang.Integer">
+        select currentConfirmedCount from statistic_data where provinceId = #{provinceId} order by dateId desc limit 1
+    </select>
+    <select id="selectByProvinceId" resultType="com.qzh.epidemic.entity.StatisticData">
+        select * from statistic_data where provinceId = #{provinceId} order by dateId desc limit 40
+    </select>
+
+</mapper>

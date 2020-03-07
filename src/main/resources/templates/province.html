@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>武汉加油!!</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Fighting Wuhan"/>
+    <link rel="stylesheet" th:href="@{/assets/css/amazeui.min.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/province.css}"/>
+</head>
+<body>
+<div id="app">
+    <div th:replace="fragments/header::header"></div>
+    <div id="main">
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-9 am-u-sm-centered">
+                <div class=" province-statistic">
+                    <div class="am-g">
+                        <p class="province-update-time" th:text="${areaStat.modifyTime}">更新至 2020.03.01 15:20</p>
+                        <div class="am-u-lg-3 am-u-md-3 am-u-sm-3">
+                            <div class="province-statistic-title"><span>现有确诊</span></div>
+                            <div class="province-statistic-count"><span style="color: #ff6054"
+                                                                        th:if="${areaStat.currentConfirmedCount}!=null"
+                                                                        th:text="${areaStat.currentConfirmedCount}">37303</span>
+                                <span th:if="${areaStat.currentConfirmedCount}==null">--</span>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-3 am-u-md-3 am-u-sm-3">
+                            <div class="statistic-confirmedCount">
+                                <div class="province-statistic-title"><span>累计确诊</span></div>
+                                <div class="province-statistic-count"><span style="color: red"
+                                                                            th:if="${areaStat.confirmedCount}!=null"
+                                                                            th:text="${areaStat.confirmedCount}">19394</span>
+                                    <span th:if="${areaStat.confirmedCount}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-3 am-u-md-3 am-u-sm-3">
+                            <div class="statistic-curedCount">
+                                <div class="province-statistic-title"><span>累计治愈</span></div>
+                                <div class="province-statistic-count"><span style="color: #51c8b7"
+                                                                            th:if="${areaStat.curedCount}!=null"
+                                                                            th:text="${areaStat.curedCount}">39253</span>
+                                    <span th:if="${areaStat.curedCount}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-3 am-u-md-3 am-u-sm-3">
+                            <div class="statistic-deadCount">
+                                <div class="province-statistic-title"><span>累计死亡</span></div>
+                                <div class="province-statistic-count"><span th:if="${areaStat.deadCount}!=null"
+                                                                            style="color: rgba(42,46,48,0.89)"
+                                                                            th:text="${areaStat.deadCount}">2838</span>
+                                    <span th:if="${areaStat.deadCount}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="am-divider">
+                <div class="province-map">
+                    <p class="map-title">[[${areaStat.provinceShortName}]]疫情地图</p>
+                    <div class="am-btn-group am-btn-group-lg am-btn-group-justify">
+                        <a id="btn-province-currentConfirm" type="button" class="am-btn am-btn-secondary am-radius ">现有确诊
+                        </a>
+                        <a id="btn-province-confirm" type="button" class="am-btn am-btn-secondary am-radius">累计确诊</a>
+                    </div>
+                    <div id="province-map-container" class="am-radius">
+                    </div>
+                </div>
+                <div class="province-data-table">
+                    <div class="am-btn-group  am-btn-group-justify am-btn-group-lg">
+                        <a id="btn-table-confirmedIncr" type="button" class="am-btn am-btn-secondary am-radius ">新增<br>增长趋势</a>
+                        <a id="btn-table-confirmedCount" type="button" class="am-btn am-btn-secondary am-radius">累计<br>确诊趋势</a>
+                        <a id="btn-table-curedDead" type="button" class="am-btn am-btn-secondary am-radius">累计<br>治愈/死亡</a>
+                    </div>
+                    <div id="province-table-container" class="am-radius">
+
+                    </div>
+                </div>
+                <div class="epidemic-province">
+                    <p class="province-name">[[${areaStat.provinceShortName}]]疫情数据</p>
+                    <table class="am-table am-table-compact am-table-centered">
+                        <thead>
+                        <tr>
+                            <th>城市</th>
+                            <th class="data-increase">现有确诊</th>
+                            <th>累计确诊</th>
+                            <th>治愈</th>
+                            <th>死亡</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="cityInfo:${areaStat.cities}" th:object="${cityInfo}">
+                            <td th:text="*{cityName}">湖北</td>
+                            <td class="data-increase" th:if="${cityInfo.currentConfirmedCount!=null}"
+                                th:text="*{currentConfirmedCount}">196
+                            </td>
+                            <td class="data-increase" th:if="${cityInfo.currentConfirmedCount==null}">--</td>
+
+                            <td th:if="${cityInfo.confirmedCount!=null}" th:text="*{confirmedCount}">30543</td>
+                            <td th:if="${cityInfo.confirmedCount==null}">--</td>
+
+                            <td th:if="${cityInfo.curedCount!=null}" th:text="*{curedCount}">33757</td>
+                            <td th:if="${cityInfo.curedCount==null}">--</td>
+
+                            <td th:if="${cityInfo.deadCount!=null}" th:text="*{deadCount}">2803</td>
+                            <td th:if="${cityInfo.deadCount==null}">--</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/tip::tip"></div>
+    <div th:replace="fragments/footer::footer"></div>
+</div>
+<script th:inline="javascript">
+    var provinceId = [[${areaStat.locationId}]];
+    var provinceShortName = [[${areaStat.provinceShortName}]]
+</script>
+</body>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script th:src="@{/assets/js/amazeui.min.js}"></script>
+<script th:src="@{/js/all.js}"></script>
+<script type="text/javascript" th:src="@{/dist/echarts.min.js}"></script>
+<script th:inline="javascript" type="text/javascript" th:src="@{'/map/js/province/'+ ${areaStat.provinceShortName}+'.js'}"></script>
+<script type="text/javascript" th:src="@{/js/province.js}"></script>
+</html>

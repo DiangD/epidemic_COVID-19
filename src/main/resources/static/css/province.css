@@ -1,0 +1,51 @@
+.province-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.epidemic-province {
+    padding: 15px;
+}
+
+.province-statistic {
+    margin-top: 15px;
+    border-radius: 10px;
+    border: 1px solid silver;
+    box-shadow: 0 2px 5px 0 rgba(33, 22, 22, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    padding: 15px 15px ;
+    text-align: center;
+    
+}
+
+.province-statistic-title {
+    font-size: 16px;
+}
+.province-statistic-count{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.province-map {
+    padding: 15px 0;
+}
+
+.province-update-time {
+    color:#aaadb4;
+    margin-left: 24px;
+    text-align: left;
+}
+
+#province-map-container {
+    padding: 15px;
+    margin-top: 15px;
+    height: 640px;
+    border: 1px solid silver;
+    box-shadow: 0 2px 5px 0 rgba(33, 22, 22, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+#province-table-container{
+    padding: 15px 15px 0px;
+    margin-top: 15px;
+    height: 560px;
+    border: 1px solid silver;
+    box-shadow: 0 2px 5px 0 rgba(33, 22, 22, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}

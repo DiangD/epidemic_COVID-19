@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>武汉加油!!</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Fighting Wuhan"/>
+    <link rel="stylesheet" th:href="@{/assets/css/amazeui.min.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+</head>
+<body>
+<div id="app">
+    <div th:replace="fragments/header::header"></div>
+    <div id="main">
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-9 am-u-sm-centered">
+                <div class="epidemic-broadcast">
+                    <p class="broadcast-title">实时播报</p>
+                    <div class="timeline timeline-warp" id="timelineContainer">
+                    </div>
+                    <div id="pagination">
+                        <ul class="am-pagination">
+                            <li class="am-pagination-prev"><a id="prePage" href="">&laquo; 上一页</a></li>
+                            <li class="am-pagination-next"><a  id=" nextPage" href="">下一页 &raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/tip::tip"></div>
+    <div th:replace="fragments/footer::footer"></div>
+</div>
+</body>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script th:src="@{/js/paging_plugin.js}"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script th:src="@{/assets/js/amazeui.min.js}"></script>
+<script th:src="@{/js/timeline.js}"></script>
+<script th:src="@{/js/all.js}"></script>
+</html>

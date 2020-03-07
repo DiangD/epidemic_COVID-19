@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzh.epidemic.mapper.StatisticMapper">
+    <insert id="addStatistic" parameterType="Statistic">
+        replace into statistic
+        (`id`, `createTime`, `modifyTime`, `confirmedCount`, `suspectedCount`, `curedCount`, `deadCount`,
+         `seriousCount`, `suspectedIncr`, `confirmedIncr`, `curedIncr`, `deadIncr`, `seriousIncr`,
+         `currentConfirmedCount`, `currentConfirmedIncr`)
+        values (#{statistic.id}, #{statistic.createTime}, #{statistic.modifyTime}, #{statistic.confirmedCount},
+                #{statistic.suspectedCount},
+                #{statistic.curedCount}, #{statistic.deadCount}, #{statistic.seriousCount}, #{statistic.suspectedIncr},
+                #{statistic.confirmedIncr}, #{statistic.curedIncr}, #{statistic.deadIncr}, #{statistic.seriousIncr},
+                #{statistic.currentConfirmedCount}, #{statistic.currentConfirmedIncr})
+    </insert>
+
+    <select id="selectStatistic" resultType="com.qzh.epidemic.entity.Statistic">
+        select * from statistic order by modifyTime desc limit 1;
+    </select>
+</mapper>

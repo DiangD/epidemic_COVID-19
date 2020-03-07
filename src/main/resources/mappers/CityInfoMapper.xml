@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzh.epidemic.mapper.CityInfoMapper">
+    <insert id="addCityInfo" parameterType="CityInfo">
+        replace into city_info
+        (`locationId`, `cityName`, `confirmedCount`, `suspectedCount`, `curedCount`, `deadCount`, `provinceId`,
+         `currentConfirmedCount`)
+        values (#{cityInfo.locationId}, #{cityInfo.cityName}, #{cityInfo.confirmedCount}, #{cityInfo.suspectedCount},
+                #{cityInfo.curedCount}, #{cityInfo.deadCount}, #{cityInfo.provinceId},
+                #{cityInfo.currentConfirmedCount})
+
+    </insert>
+    <insert id="addCityInfoList" parameterType="list">
+        replace into city_info
+        (`locationId`, `cityName`, `confirmedCount`,
+        `suspectedCount`, `curedCount`, `deadCount`,
+        `provinceId`,`currentConfirmedCount`)
+        values
+        <foreach collection="cityInfos" item="cityInfo" index="index" separator=",">
+            (
+            #{cityInfo.locationId}, #{cityInfo.cityName} ,
+            #{cityInfo.confirmedCount}, #{cityInfo.suspectedCount} ,
+            #{cityInfo.curedCount}, #{cityInfo.deadCount}, #{cityInfo.provinceId},#{cityInfo.currentConfirmedCount}
+            )
+        </foreach>
+    </insert>
+    <select id="selectByProvinceId" resultType="com.qzh.epidemic.entity.CityInfo">
+        select * from city_info where provinceId = #{provinceId,jdbcType=INTEGER}
+    </select>
+
+</mapper>

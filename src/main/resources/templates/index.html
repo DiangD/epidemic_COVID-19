@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>武汉加油!!</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Fighting Wuhan"/>
+    <link rel="stylesheet" th:href="@{/assets/css/amazeui.min.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+</head>
+<body>
+<div id="app">
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div id="main">
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-9 am-u-sm-centered">
+                <div class="d-statistic statistic-div--radius">
+                    <div class="am-g">
+                        <p class="statistic-update-time">更新至 [[${statistic.publishDate}]]</p>
+                        <div class="am-u-lg-4 am-u-md-4 am-u-sm-4">
+                            <div class="statistic-currentConfirmedCount">
+                                <div class="statistic-title"><span>现有确诊</span></div>
+                                <div class="statistic-count"><span style="color: #ff6054" th:if="${statistic.currentConfirmedCount}!=null"
+                                                                   th:text="${statistic.currentConfirmedCount}">37303</span>
+                                    <span th:if="${statistic.currentConfirmedCount}==null">--</span>
+                                </div>
+                                <div class="statistic-compare">
+                                    昨日<span style="color: #ff5463" th:if="${statistic.currentConfirmedIncr}!=null"
+                                            th:text="${statistic.currentConfirmedIncr } > 0 ? ${'+'+statistic.currentConfirmedIncr} : ${statistic.currentConfirmedIncr}">-2509</span>
+                                    <span th:if="${statistic.currentConfirmedIncr}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-4 am-u-md-4 am-u-sm-4">
+                            <div class=" statistic-suspectedCount">
+                                <div class="statistic-title"><span>现有疑似</span></div>
+                                <div class="statistic-count"><span style="color: #e4a95d" th:if="${statistic.suspectedCount}!=null"
+                                                                   th:text="${statistic.suspectedCount}">1418</span>
+                                </div>
+                                <div class="statistic-compare">
+                                    昨日<span style="color: #e4a95d" th:if="${statistic.suspectedIncr}!=null"
+                                            th:text="${statistic.suspectedIncr}>0 ? ${'+'+statistic.suspectedIncr}: ${statistic.suspectedIncr}">+248</span>
+                                    <span th:if="${statistic.suspectedIncr}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-4 am-u-md-4 am-u-sm-4">
+                            <div class="statistic-seriousCount">
+                                <div class="statistic-title"><span>现有重症</span></div>
+                                <div class="statistic-count"><span style="color: #2e609d" th:if="${statistic.seriousCount}!=null"
+                                                                   th:text="${statistic.seriousCount}">7664</span></div>
+                                <div class="statistic-compare">
+                                    昨日<span style="color: #2e609d" th:if="${statistic.seriousIncr}!=null"
+                                            th:text="${statistic.seriousIncr}>0 ? ${'+'+statistic.seriousIncr}: ${statistic.seriousIncr}">-288</span>
+                                    <span th:if="${statistic.seriousIncr}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-g" style="margin-top: 20px">
+                        <div class="am-u-lg-4 am-u-md-4 am-u-sm-4">
+                            <div class="statistic-confirmedCount">
+                                <div class="statistic-title"><span>累计确诊</span></div>
+                                <div class="statistic-count"><span style="color: red" th:if="${statistic.confirmedCount}!=null"
+                                                                   th:text="${statistic.confirmedCount}">19394</span>
+                                </div>
+                                <div class="statistic-compare">
+                                    昨日<span style="color: red" th:if="${statistic.confirmedIncr}!=null"
+                                            th:text="${statistic.confirmedIncr}>0 ? ${'+'+statistic.confirmedIncr}: ${statistic.confirmedIncr}">+430</span>
+                                    <span th:if="${statistic.confirmedIncr}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-4 am-u-md-4 am-u-sm-4">
+                            <div class="statistic-curedCount">
+                                <div class="statistic-title"><span>累计治愈</span></div>
+                                <div class="statistic-count"><span style="color: #51c8b7" th:if="${statistic.curedCount}!=null"
+                                                                   th:text="${statistic.curedCount}">39253</span></div>
+                                <div class="statistic-compare">
+                                    昨日<span style="color: #51c8b7" th:if="${statistic.curedIncr}!=null"
+                                            th:text="${statistic.curedIncr}>0 ? ${'+'+statistic.curedIncr}: ${statistic.curedIncr}">+2892</span>
+                                    <span th:if="${statistic.curedIncr}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-4 am-u-md-4 am-u-sm-4">
+                            <div class="statistic-deadCount">
+                                <div class="statistic-title"><span>累计死亡</span></div>
+                                <div class="statistic-count"><span style="color: rgba(42,46,48,0.89)" th:if="${statistic.deadCount}!=null"
+                                                                   th:text="${statistic.deadCount}">2838</span></div>
+                                <div class="statistic-compare">
+                                    昨日<span style="color: rgba(42,46,48,0.89)" th:if="${statistic.deadIncr}!=null"
+                                            th:text="${statistic.deadIncr}>0 ? ${'+'+statistic.deadIncr}: ${statistic.deadIncr}">+47</span>
+                                    <span th:if="${statistic.deadIncr}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="am-divider">
+                <div class="epidemic-map">
+                    <p class="map-title">国内疫情地图</p>
+                    <div class="am-btn-group am-btn-group-lg">
+                        <button id="btn-currentConfirm" class="am-btn am-btn-secondary am-radius ">现有确诊
+                        </button>
+                        <button id="btn-confirm" class="am-btn am-btn-secondary am-radius">累计确诊</button>
+                    </div>
+                    <div id="map-container" class="am-radius">
+                    </div>
+                </div>
+                <hr class="am-divider">
+                <div class="epidemic-broadcast">
+                    <p class="broadcast-title">实时播报</p>
+                    <div class="timeline timeline-warp">
+                        <div class="timeline-row-major" th:each=" timeline : ${timelines}" th:object="${timeline}">
+                            <span class="timeline-node am-animation-delay-1 am-animation-slide-top"></span>
+                            <div class="content am-comment-main am-animation-delay-1 am-animation-slide-top">
+                                <header class="am-comment-hd">
+                                    <p class="am-comment-meta content-date" th:text="*{publishDate}">03月01日 15:10</p>
+                                </header>
+                                <div class="am-comment-bd">
+                                    <div class="content-title">
+                                        <a th:href="*{sourceUrl}" href="#" target="_blank" th:text="*{title}">国家卫健委：全国治愈出院比例达到52.1%</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="/timeline" class="am-btn am-btn-link am-btn-block">查看更多...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/tip::tip"></div>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</div>
+</body>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script th:src="@{/assets/js/amazeui.min.js}"></script>
+<script type="text/javascript" th:src="@{/dist/echarts.min.js}"></script>
+<script type="text/javascript" th:src="@{/map/js/china.js}"></script>
+<script type="text/javascript" th:src="@{/js/index.js}"></script>
+<script type="text/javascript" th:src="@{/js/all.js}"></script>
+</html>

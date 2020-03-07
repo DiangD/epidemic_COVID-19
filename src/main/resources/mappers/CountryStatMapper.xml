@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzh.epidemic.mapper.CountryStatMapper">
+
+    <insert id="insertCountryStatList" parameterType="list">
+        replace into country_info (locationId, provinceName, provinceShortName, currentConfirmedCount, confirmedCount,
+        suspectedCount, curedCount, deadCount, modifyTime, createTime, countryShortCode,
+        countryType, continents)
+        values
+        <foreach collection="countryStats" item="countryStat" index="index" separator=",">
+            (
+            #{countryStat.locationId},#{countryStat.provinceName},#{countryStat.provinceShortName},
+            #{countryStat.currentConfirmedCount},#{countryStat.confirmedCount},#{countryStat.suspectedCount},
+            #{countryStat.curedCount},#{countryStat.deadCount},#{countryStat.modifyTime},
+            #{countryStat.createTime},
+            #{countryStat.countryShortCode},#{countryStat.countryType},#{countryStat.continents}
+            )
+        </foreach>
+    </insert>
+    <select id="selectByContinents" resultType="com.qzh.epidemic.entity.CountryStat">
+        select * from country_info where continents = #{continents} order by `currentConfirmedCount` desc
+    </select>
+</mapper>
