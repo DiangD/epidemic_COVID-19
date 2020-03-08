@@ -1,5 +1,6 @@
 # epidemic_nCov2019
 一个基于爬虫的疫情数据数据展示网站。由于疫情，宅在家里心血来潮。希望武汉的疫情早日结束！！
+爬虫数据来源:"https://3g.dxy.cn/newh5/view/pneumonia"
 #### 网站功能介绍：
 * 国内疫情的数据展示
 * 国外疫情的数据展示
@@ -10,7 +11,7 @@
 * ECharts 基于js的图表绘制
 * Quartz 后台定时任务
 * Jsoup爬虫
-* 前端：AmazeUI（妹子UI）
+* 前端：AmazeUI（妹子UI）  
 #### 项目截图
 ![avatar](src/main/resources/static/img/screenShot/localhost_8080_index.png)
 ![avatar](src/main/resources/static/img/screenShot/localhost_8080_province_420000.png)
