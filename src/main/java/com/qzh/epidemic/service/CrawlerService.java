@@ -48,7 +48,6 @@ public class CrawlerService {
         getStatisticByCrawler();
         getAreaStatInfoByCrawler();
         getTimeLineInfoByCrawler();
-        getTimeLineInfoByCrawler();
         getCountryStatsByCrawler();
         log.info("数据更新同步成功");
     }
