@@ -14,7 +14,7 @@ public class Crawler {
      * 时间线新闻
      */
     public static final String TIME_LINE_REGEX_TEMPLATE = "\\[(.*?)\\]";
-    public static final String TIME_LINE_ATTRIBUTE = "getTimelineServiceundefined";
+    public static final String TIME_LINE_ATTRIBUTE = "getTimelineService1";
     /**
      * 各省信息
      */

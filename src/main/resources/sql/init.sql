@@ -82,23 +82,24 @@ create table `statistic`
   default charset = utf8;
 
 # 时间线
-drop table if exists `timeline`;
-create table `timeline`
+drop table  if exists timeline;
+create table timeline
 (
-    `id`           int(11)      not null,
-    `pubDate`      int(11)      null default null,
-    `pubDateStr`   varchar(255) null default null,
-    `title`        varchar(255) null default null,
-    `summary`      varchar(255) null default null,
-    `infoSource`   varchar(255) null default null,
-    `sourceUrl`    varchar(255) null default null,
-    `provinceId`   int(11)      null default null,
-    `provinceName` varchar(255) null default null,
-    `createTime`   bigint(20)   null default null,
-    `modifyTime`   bigint(20)   null default null,
+    id               int          not null,
+    pubDate          int          null,
+    pubDateStr       varchar(255) null,
+    title            varchar(255) null,
+    summary          varchar(255) null,
+    infoSource       varchar(255) null,
+    sourceUrl        varchar(255) null,
+    provinceId       int          null,
+    infoType         int          null,
+    dataInfoState    int          null,
+    dataInfoOperator varchar(255) null,
+    dataInfoTime     bigint       null,
     primary key (`id`) using btree
-) engine = InnoDB
-  default charset = utf8;
+)engine = InnoDB
+ default charset = utf8;
 
 
 drop table if exists `country_info`;

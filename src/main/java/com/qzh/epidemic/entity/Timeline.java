@@ -3,6 +3,9 @@ package com.qzh.epidemic.entity;
 import com.qzh.epidemic.utils.DateUtil;
 import lombok.Data;
 
+import java.security.PrivateKey;
+import java.util.concurrent.TimeUnit;
+
 /**
  * @ClassName TimeLine
  * @Author DiangD
@@ -12,16 +15,20 @@ import lombok.Data;
  **/
 @Data
 public class Timeline {
-
-//    {"id":6298,
-//    "pubDate":1582525654000,
-//    "pubDateStr":"2小时前",
-//    "title":"菲律宾明日从钻石公主号撤侨",
-//    "summary":"菲律宾卫生部称，菲政府将于25日从“钻石公主”号撤侨，并安排包机将侨民接回。“钻石公主”号上共有538名菲律宾公民，有意向回国的400人左右，具体撤离人数要根据25日的检测结果确定，撤回人员将进行14天隔离。截至24日，菲律宾累计确诊新冠肺炎59例，其中2人治愈出院。\n",
-//    "infoSource":"央视新闻",
-//    "sourceUrl":"http://m.weibo.cn/2656274875/4475499332344791",
-//    "provinceId":"1",
-//    "createTime":1582526054000,"modifyTime":1582526054000},
+    /**
+     * id : 15004
+     * pubDate : 1585130146000
+     * pubDateStr : 11分钟前
+     * title :  3月25日重庆市新冠肺炎疫情防控工作新闻发布会疫情通报
+     * summary :    无新增境外输入新冠肺炎确诊病例市卫生健康委通报，3月24日0—24时，重庆市本地无新增新冠肺炎确诊病例，无新增境外输入新冠肺炎确诊病例。
+     * infoSource : 重庆卫健委
+     * sourceUrl : http://wsjkw.cq.gov.cn/yqxxyqtb/20200325/261172.html
+     * provinceId :
+     * infoType : 2
+     * dataInfoState : 0
+     * dataInfoOperator :
+     * dataInfoTime : 1585130146000
+     */
 
     private Integer id;
     private Long pubDate;
@@ -31,17 +38,14 @@ public class Timeline {
     private String infoSource;
     private String sourceUrl;
     private String provinceId;
-    private String provinceName;
-    private Long createTime;
-    private Long modifyTime;
+    private Integer infoType;
+    private Integer dataInfoState;
+    private String dataInfoOperator;
+    private Long dataInfoTime;
     private String publishDate;
 
-    public Long getModifyTime() {
-        return modifyTime;
-    }
-
-    public void setModifyTime(Long modifyTime) {
-        this.modifyTime = modifyTime;
-        this.publishDate = DateUtil.transformToPublishDate(modifyTime);
+    public void setDataInfoTime(Long dataInfoTime) {
+        this.dataInfoTime = dataInfoTime;
+        this.publishDate = DateUtil.transformToPublishDate(dataInfoTime);
     }
 }

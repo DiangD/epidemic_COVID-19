@@ -5,13 +5,13 @@
     <insert id="addTimeLines" parameterType="list">
         insert ignore
         into timeline
-        ( id,pubDate,pubDateStr,title,summary,infoSource,sourceUrl,provinceId,provinceName,createTime,modifyTime)
+        ( id,pubDate,pubDateStr,title,summary,infoSource,sourceUrl,provinceId,infoType,dataInfoState,dataInfoOperator,dataInfoTime)
         values
         <foreach collection="timelines" item="timeline" index="index" separator=",">
             (
             #{timeline.id}, #{timeline.pubDate},#{timeline.pubDateStr},#{timeline.title},
-            #{timeline.summary},#{timeline.infoSource},#{timeline.sourceUrl},#{timeline.provinceId},#{timeline.provinceName},
-            #{timeline.createTime},#{timeline.modifyTime}
+            #{timeline.summary},#{timeline.infoSource},#{timeline.sourceUrl},#{timeline.provinceId},#{timeline.infoType},
+            #{timeline.dataInfoState},#{timeline.dataInfoOperator},#{timeline.dataInfoTime}
             )
         </foreach>
     </insert>
@@ -19,15 +19,14 @@
     <select id="selectAll" resultType="com.qzh.epidemic.entity.Timeline">
         select *
         from timeline
-        order by modifyTime desc
+        order by dataInfoTime desc
     </select>
 
     <select id="selectLatest5" resultType="Timeline">
         select *
         from timeline
-        order by modifyTime desc
+        order by dataInfoTime desc
         limit 5;
-
     </select>
 
 
