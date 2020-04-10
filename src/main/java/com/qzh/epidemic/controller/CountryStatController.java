@@ -1,12 +1,17 @@
 package com.qzh.epidemic.controller;
 
 import com.qzh.epidemic.entity.CountryStat;
+import com.qzh.epidemic.entity.GlobalStatistics;
+import com.qzh.epidemic.entity.Statistic;
 import com.qzh.epidemic.response.Response;
 import com.qzh.epidemic.service.CountryStatService;
+import com.qzh.epidemic.service.GlobalStatisticsService;
+import com.qzh.epidemic.service.StatisticService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +32,14 @@ import java.util.List;
 public class CountryStatController {
     @Autowired
     private CountryStatService countryStatService;
+    @Autowired
+    private StatisticService statisticService;
 
     @RequestMapping("/country")
-    public ModelAndView countryStat() {
-        return new ModelAndView("country");
+    public ModelAndView countryStat(Model model) {
+        Statistic statistic = statisticService.selectStatistic();
+        model.addAttribute("statistic", statistic);
+        return new ModelAndView("country","globalStatisticModel",model);
     }
 
     @GetMapping("/country/{continents}")

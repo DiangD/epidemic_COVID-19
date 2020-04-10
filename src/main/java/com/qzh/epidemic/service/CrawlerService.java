@@ -40,6 +40,9 @@ public class CrawlerService {
     @Autowired
     private CountryStatService countryStatService;
 
+    @Autowired
+    private GlobalStatisticsService globalStatisticsService;
+
     /**
      * 插入或者更新全部表的数据
      */
@@ -129,7 +132,9 @@ public class CrawlerService {
         String statisticInfo = CrawlerTool.getStatisticInformation();
         statistic = Parse.parseStatisticInformation(statisticInfo);
         statisticService.addStatistic(statistic);
-        log.info("全国统计数据同步成功");
+        statistic.getGlobalStatistics().setId(statistic.getId());
+        globalStatisticsService.addGlobalStatistics(statistic.getGlobalStatistics());
+        log.info("统计数据同步成功");
         return statistic;
     }
 

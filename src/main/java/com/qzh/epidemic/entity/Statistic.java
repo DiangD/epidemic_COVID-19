@@ -29,6 +29,7 @@ public class Statistic {
     private Integer currentConfirmedCount;
     private Integer currentConfirmedIncr;
     private String publishDate;
+    private GlobalStatistics globalStatistics;
 
     public Long getModifyTime() {
         return modifyTime;

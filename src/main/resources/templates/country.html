@@ -13,6 +13,7 @@
     <meta name="apple-mobile-web-app-title" content="Fighting Wuhan"/>
     <link rel="stylesheet" th:href="@{/assets/css/amazeui.min.css}">
     <link rel="stylesheet" th:href="@{/css/global.css}"/>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" th:href="@{/css/country.css}"/>
 </head>
 <body>
@@ -21,6 +22,62 @@
     <div id="main">
         <div class="am-g">
             <div class="am-u-sm-12 am-u-md-12 am-u-lg-9 am-u-sm-centered">
+                <div class="d-statistic statistic-div--radius">
+                    <div class="am-g">
+                        <p class="statistic-update-time">更新至 [[${statistic.publishDate}]]</p>
+                        <div class="am-u-lg-3 am-u-md-3 am-u-sm-3">
+                            <div class="statistic-currentConfirmedCount">
+                                <div class="statistic-title"><span>现有确诊</span></div>
+                                <div class="statistic-count"><span style="color: #ff6054" th:if="${statistic.globalStatistics.currentConfirmedCount}!=null"
+                                                                   th:text="${statistic.globalStatistics.currentConfirmedCount}">37303</span>
+                                    <span th:if="${statistic.globalStatistics.currentConfirmedCount}==null">--</span>
+                                </div>
+                                <div class="statistic-compare">
+                                    昨日<span style="color: #ff5463" th:if="${statistic.globalStatistics.currentConfirmedIncr}!=null"
+                                            th:text="${statistic.globalStatistics.currentConfirmedIncr } > 0 ? ${'+'+statistic.globalStatistics.currentConfirmedIncr} : ${statistic.globalStatistics.currentConfirmedIncr}">-2509</span>
+                                    <span th:if="${statistic.globalStatistics.currentConfirmedIncr}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-3 am-u-md-3 am-u-sm-3">
+                            <div class="statistic-confirmedCount">
+                                <div class="statistic-title"><span>累计确诊</span></div>
+                                <div class="statistic-count"><span style="color: red" th:if="${statistic.globalStatistics.confirmedCount}!=null"
+                                                                   th:text="${statistic.globalStatistics.confirmedCount}">19394</span>
+                                </div>
+                                <div class="statistic-compare">
+                                    昨日<span style="color: red" th:if="${statistic.globalStatistics.confirmedIncr}!=null"
+                                            th:text="${statistic.globalStatistics.confirmedIncr}>0 ? ${'+'+statistic.globalStatistics.confirmedIncr}: ${statistic.globalStatistics.confirmedIncr}">+430</span>
+                                    <span th:if="${statistic.globalStatistics.confirmedIncr}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-3 am-u-md-3 am-u-sm-3">
+                            <div class="statistic-curedCount">
+                                <div class="statistic-title"><span>累计治愈</span></div>
+                                <div class="statistic-count"><span style="color: #51c8b7" th:if="${statistic.globalStatistics.curedCount}!=null"
+                                                                   th:text="${statistic.globalStatistics.curedCount}">39253</span></div>
+                                <div class="statistic-compare">
+                                    昨日<span style="color: #51c8b7" th:if="${statistic.globalStatistics.curedIncr}!=null"
+                                            th:text="${statistic.globalStatistics.curedIncr}>0 ? ${'+'+statistic.globalStatistics.curedIncr}: ${statistic.globalStatistics.curedIncr}">+2892</span>
+                                    <span th:if="${statistic.globalStatistics.curedIncr}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-3 am-u-md-3 am-u-sm-3">
+                            <div class="statistic-deadCount">
+                                <div class="statistic-title"><span>累计死亡</span></div>
+                                <div class="statistic-count"><span style="color: rgba(42,46,48,0.89)" th:if="${statistic.globalStatistics.deadCount}!=null"
+                                                                   th:text="${statistic.globalStatistics.deadCount}">2838</span></div>
+                                <div class="statistic-compare">
+                                    昨日<span style="color: rgba(42,46,48,0.89)" th:if="${statistic.globalStatistics.deadIncr}!=null"
+                                            th:text="${statistic.globalStatistics.deadIncr}>0 ? ${'+'+statistic.globalStatistics.deadIncr}: ${statistic.globalStatistics.deadIncr}">+47</span>
+                                    <span th:if="${statistic.globalStatistics.deadIncr}==null">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="epidemic-country am-scrollable-horizontal">
                     <div class="am-u-lg-3 am-u-md-4 am-u-sm-6">
                         <form class="am-form">

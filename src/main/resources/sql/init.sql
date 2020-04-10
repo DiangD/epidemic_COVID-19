@@ -81,8 +81,24 @@ create table `statistic`
 ) engine = InnoDB
   default charset = utf8;
 
+drop table  if exists `global_statistics`;
+create table `global_statistics`
+(
+    id                    int(11) not null,
+    confirmedCount        int(11) null default null,
+    curedCount            int(11) null default null,
+    deadCount             int(11) null default null,
+    confirmedIncr         int(11) null default null,
+    curedIncr             int(11) null default null,
+    deadIncr              int(11) null default null,
+    currentConfirmedCount int(11) null default null,
+    currentConfirmedIncr  int(11) null default null,
+    primary key (`id`) using btree
+) engine = InnoDB
+  default charset = utf8 ;
+
 # 时间线
-drop table  if exists timeline;
+drop table  if exists `timeline`;
 create table timeline
 (
     id               int          not null,

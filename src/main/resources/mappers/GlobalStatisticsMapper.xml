@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qzh.epidemic.mapper.GlobalStatisticsMapper">
+    <insert id="insertGlobalStatistics">
+        replace into global_statistics
+        (id, `confirmedCount`, `curedCount`, `deadCount`, `confirmedIncr`,
+        `curedIncr`,
+        `deadIncr`, `currentConfirmedCount`, `currentConfirmedIncr`)
+        values (#{globalStatistics.id}, #{globalStatistics.confirmedCount}, #{globalStatistics.curedCount},
+        #{globalStatistics.deadCount}, #{globalStatistics.confirmedIncr}, #{globalStatistics.curedIncr},
+        #{globalStatistics.deadIncr},
+        #{globalStatistics.currentConfirmedCount}, #{globalStatistics.currentConfirmedIncr});
+    </insert>
+    <select id="selectGlobalStatistics" resultType="com.qzh.epidemic.entity.GlobalStatistics">
+        select * from global_statistics limit 1
+    </select>
+</mapper>
