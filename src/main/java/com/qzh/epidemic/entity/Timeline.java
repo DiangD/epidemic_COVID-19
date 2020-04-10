@@ -39,13 +39,10 @@ public class Timeline {
     private String sourceUrl;
     private String provinceId;
     private Integer infoType;
-    private Integer dataInfoState;
-    private String dataInfoOperator;
-    private Long dataInfoTime;
     private String publishDate;
 
-    public void setDataInfoTime(Long dataInfoTime) {
-        this.dataInfoTime = dataInfoTime;
-        this.publishDate = DateUtil.transformToPublishDate(dataInfoTime);
+    public void setPubDate(Long pubDate) {
+        this.pubDate = pubDate;
+        this.publishDate = DateUtil.transformToPublishDate(pubDate);
     }
 }

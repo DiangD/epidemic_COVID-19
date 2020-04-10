@@ -86,17 +86,13 @@ drop table  if exists timeline;
 create table timeline
 (
     id               int          not null,
-    pubDate          int          null,
+    pubDate          bigint          null,
     pubDateStr       varchar(255) null,
     title            varchar(255) null,
     summary          varchar(255) null,
     infoSource       varchar(255) null,
     sourceUrl        varchar(255) null,
     provinceId       int          null,
-    infoType         int          null,
-    dataInfoState    int          null,
-    dataInfoOperator varchar(255) null,
-    dataInfoTime     bigint       null,
     primary key (`id`) using btree
 )engine = InnoDB
  default charset = utf8;
