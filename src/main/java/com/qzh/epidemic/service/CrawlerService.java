@@ -129,7 +129,7 @@ public class CrawlerService {
         Statistic statistic;
         //提取statistic模块的json信息
         //解析
-        String statisticInfo = CrawlerTool.getStatisticInformation();
+        String statisticInfo = CrawlerTool.getInformation(Crawler.STATIC_INFORMATION_TEMPLATE, "id", Crawler.STATIC_INFORMATION_ATTRIBUTE);
         statistic = Parse.parseStatisticInformation(statisticInfo);
         statisticService.addStatistic(statistic);
         statistic.getGlobalStatistics().setId(statistic.getId());

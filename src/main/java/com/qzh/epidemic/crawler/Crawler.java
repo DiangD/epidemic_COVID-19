@@ -23,6 +23,7 @@ public class Crawler {
     /**
      * 总数据
      */
+    public static final String STATIC_INFORMATION_TEMPLATE = "\\{\\\"id\\\".*\\\"\\}";
     public static final String STATIC_INFORMATION_ATTRIBUTE = "getStatisticsService";
 
     /**

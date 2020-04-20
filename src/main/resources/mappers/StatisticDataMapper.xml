@@ -37,7 +37,7 @@
         select currentConfirmedCount from statistic_data where provinceId = #{provinceId} order by dateId desc limit 1
     </select>
     <select id="selectByProvinceId" resultType="com.qzh.epidemic.entity.StatisticData">
-        select * from statistic_data where provinceId = #{provinceId} order by dateId desc limit 40
+        select * from statistic_data where provinceId = #{provinceId} order by dateId desc limit 60
     </select>
 
 </mapper>
