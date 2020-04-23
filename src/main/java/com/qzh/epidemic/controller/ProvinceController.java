@@ -18,10 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName ProvinceController
@@ -70,7 +68,7 @@ public class ProvinceController {
     public ResponseEntity<Response> getProvinceEpidemicTable(@PathVariable("provinceId") int provinceId, @PathVariable("type") String type) {
         try {
                 List<StatisticData> dataList = statisticDataService.getStatisticDataListByProvinceId(provinceId);
-                Collections.reverse(dataList);
+                dataList.sort(Comparator.comparing(StatisticData::getDateId));
                 LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
                 if ("confirmedIncr".equals(type)) {
                     for (StatisticData data : dataList) {
