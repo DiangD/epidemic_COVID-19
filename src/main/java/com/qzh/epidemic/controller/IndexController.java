@@ -66,7 +66,12 @@ public class IndexController {
                     epidemicData.add(new MapData(areaStat.getProvinceShortName(),areaStat.getConfirmedCount()));
                 }
             }
-            return ResponseEntity.ok(new Response(true, "全国数据获取成功！", epidemicData));
+            if (!epidemicData.isEmpty()) {
+                return ResponseEntity.ok(new Response(true, "全国数据获取成功！", epidemicData));
+            } else {
+                return ResponseEntity.ok(new Response(false, "全国数据获取失败！", "请求参数错误"));
+            }
+
         } catch (Exception e) {
             log.error("全国数据获取失败",e);
             return ResponseEntity.ok(new Response(false, "全国数据获取失败！",e.getMessage()));

@@ -46,7 +46,11 @@ public class CountryStatController {
     public ResponseEntity<Response> getCountryStatByContinents(@PathVariable("continents")String continents) {
         try {
             List<CountryStat> countryStats = countryStatService.getCountryStatsByContinents(continents);
-            return ResponseEntity.ok(new Response(true, "获取国家数据成功！", countryStats));
+            if (!continents.isEmpty()) {
+                return ResponseEntity.ok(new Response(true, "获取国家数据成功！", countryStats));
+            } else {
+                return ResponseEntity.ok(new Response(false, "获取国家数据失败！","请求参数错误！"));
+            }
         } catch (Exception e) {
             log.error("获取国家数据失败",e);
             return ResponseEntity.ok(new Response(true, "获取国家数据失败！", e.getMessage()));

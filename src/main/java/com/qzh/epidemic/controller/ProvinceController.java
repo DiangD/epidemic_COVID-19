@@ -57,41 +57,53 @@ public class ProvinceController {
                     epidemicData.add(new MapData(cityInfo.getCityName(), cityInfo.getConfirmedCount()));
                 }
             }
-            return ResponseEntity.ok(new Response(true, "省份数据获取成功！", epidemicData));
+            if (!epidemicData.isEmpty()) {
+                return ResponseEntity.ok(new Response(true, "省份数据获取成功！", epidemicData));
+            } else {
+                return ResponseEntity.ok(new Response(false, "省份数据获取失败！", "请求参数错误！"));
+            }
         } catch (Exception e) {
-            log.error("省份数据获取失败！",e);
-            return ResponseEntity.ok(new Response(false, "省份数据获取失败！"));
+            log.error("省份数据获取失败！", e);
+            return ResponseEntity.ok(new Response(false, "省份数据获取失败！", e.getMessage()));
         }
     }
 
     @GetMapping("/province/table/{provinceId}/{type}")
     public ResponseEntity<Response> getProvinceEpidemicTable(@PathVariable("provinceId") int provinceId, @PathVariable("type") String type) {
         try {
-                List<StatisticData> dataList = statisticDataService.getStatisticDataListByProvinceId(provinceId);
-                dataList.sort(Comparator.comparing(StatisticData::getDateId));
-                LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
-                if ("confirmedIncr".equals(type)) {
-                    for (StatisticData data : dataList) {
-                        map.put(data.getPublishDate(), data.getConfirmedIncr());
-                    }
-                } else if ("confirmedCount".equals(type)) {
-                    for (StatisticData data : dataList) {
-                        map.put(data.getPublishDate(), data.getConfirmedCount());
-                    }
-                } else if ("curedAndDead".equals(type)) {
-                    LinkedHashMap<String, List<Integer>> cdMap = new LinkedHashMap<>();
-                    for (StatisticData data : dataList) {
-                        List<Integer> cdList = new ArrayList<>();
-                        cdList.add(data.getCuredCount());
-                        cdList.add(data.getDeadCount());
-                        cdMap.put(data.getPublishDate(), cdList);
-                    }
-                    return ResponseEntity.ok(new Response(true, "省份历史数据获取成功！", cdMap));
+            List<StatisticData> dataList = statisticDataService.getStatisticDataListByProvinceId(provinceId);
+            LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+            dataList.sort(Comparator.comparing(StatisticData::getDateId));
+            if ("confirmedIncr".equals(type)) {
+                for (StatisticData data : dataList) {
+                    map.put(data.getPublishDate(), data.getConfirmedIncr());
                 }
-            return ResponseEntity.ok(new Response(true, "省份历史数据获取成功！", map));
+            } else if ("confirmedCount".equals(type)) {
+                for (StatisticData data : dataList) {
+                    map.put(data.getPublishDate(), data.getConfirmedCount());
+                }
+            } else if ("curedAndDead".equals(type)) {
+                LinkedHashMap<String, List<Integer>> cdMap = new LinkedHashMap<>();
+                for (StatisticData data : dataList) {
+                    List<Integer> cdList = new ArrayList<>();
+                    cdList.add(data.getCuredCount());
+                    cdList.add(data.getDeadCount());
+                    cdMap.put(data.getPublishDate(), cdList);
+                }
+                if (!cdMap.isEmpty()) {
+                    return ResponseEntity.ok(new Response(true, "省份历史数据获取成功！", cdMap));
+                } else {
+                    return ResponseEntity.ok(new Response(false, "省份历史数据获取失败！", "请求参数错误！"));
+                }
+            }
+            if (!map.isEmpty()) {
+                return ResponseEntity.ok(new Response(true, "省份历史数据获取成功！", map));
+            } else {
+                return ResponseEntity.ok(new Response(false, "省份历史数据获取失败！", "请求参数错误！"));
+            }
         } catch (Exception e) {
-            log.error("省份历史数据获取失败！",e);
-            return ResponseEntity.ok(new Response(false, "省份历史数据获取失败！",e));
+            log.error("省份历史数据获取失败！", e);
+            return ResponseEntity.ok(new Response(false, "省份历史数据获取失败！", e));
         }
     }
 }
