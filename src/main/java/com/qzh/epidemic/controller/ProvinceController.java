@@ -41,11 +41,8 @@ public class ProvinceController {
     @RequestMapping("/province/{provinceId}")
     public ModelAndView province(@PathVariable("provinceId") int provinceId, Model model) {
         AreaStat areaStat = areaStatService.getAreaStatById(provinceId);
-        if (areaStat!=null) {
-            model.addAttribute("areaStat", areaStat);
-            return new ModelAndView("province", "provinceModel", model);
-        }
-        return new ModelAndView("redirect:/inland");
+        model.addAttribute("areaStat", areaStat);
+        return new ModelAndView("province", "provinceModel", model);
     }
 
     @GetMapping("/province/{provinceId}/{type}")
