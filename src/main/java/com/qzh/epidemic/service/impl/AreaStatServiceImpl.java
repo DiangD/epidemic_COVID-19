@@ -58,7 +58,9 @@ public class AreaStatServiceImpl implements AreaStatService {
     public AreaStat getAreaStatById(int locationId) {
         List<CityInfo> cityInfos = cityInfoService.getCityInfoByProvinceId(locationId);
         AreaStat areaStat = areaStatMapper.getAreaStatById(locationId);
-        areaStat.setCities(cityInfos);
+        if (areaStat!=null) {
+            areaStat.setCities(cityInfos);
+        }
         return areaStat;
     }
 
