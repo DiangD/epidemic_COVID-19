@@ -131,8 +131,8 @@ public class CrawlerService {
         //解析
         String statisticInfo = CrawlerTool.getInformation(Crawler.STATIC_INFORMATION_TEMPLATE, "id", Crawler.STATIC_INFORMATION_ATTRIBUTE);
         statistic = Parse.parseStatisticInformation(statisticInfo);
-        statisticService.addStatistic(statistic);
         statistic.getGlobalStatistics().setId(statistic.getId());
+        statisticService.addStatistic(statistic);
         globalStatisticsService.addGlobalStatistics(statistic.getGlobalStatistics());
         log.info("统计数据同步成功");
         return statistic;
