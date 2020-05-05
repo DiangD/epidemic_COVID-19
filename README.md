@@ -21,3 +21,9 @@
 3. 执行init.sql建表(src/main/resources/sql/init.sql)
 4. 启动项目，log输出爬虫启动成功则成功启动
 
+#### 缓存机制
+SpringBoot默认缓存：ConcurrentMap
+由于爬虫每小时进行数据库数据刷新，缓存有效时长（1h）
+数据刷新前，所有缓存清空
+存在可改进地方：判断是否需要更新数据库，在清空缓存
+
