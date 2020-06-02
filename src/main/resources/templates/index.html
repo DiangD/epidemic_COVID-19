@@ -27,38 +27,44 @@
                         <div class="am-u-lg-4 am-u-md-4 am-u-sm-4">
                             <div class="statistic-currentConfirmedCount">
                                 <div class="statistic-title"><span>现有确诊</span></div>
-                                <div class="statistic-count"><span style="color: #ff6054" th:if="${statistic.currentConfirmedCount}!=null"
+                                <div class="statistic-count"><span style="color: #ff6054"
+                                                                   th:if="${statistic.currentConfirmedCount}!=null"
                                                                    th:text="${statistic.currentConfirmedCount}">37303</span>
                                     <span th:if="${statistic.currentConfirmedCount}==null">--</span>
                                 </div>
                                 <div class="statistic-compare">
-                                    昨日<span style="color: #ff5463" th:if="${statistic.currentConfirmedIncr}!=null"
-                                            th:text="${statistic.currentConfirmedIncr } > 0 ? ${'+'+statistic.currentConfirmedIncr} : ${statistic.currentConfirmedIncr}">-2509</span>
+                                    较昨日<span th:if="${statistic.currentConfirmedIncr}!=null and ${statistic.currentConfirmedIncr} ==0">无变化</span>
+                                    <span style="color: #ff5463" th:if="${statistic.currentConfirmedIncr}!=null and ${statistic.currentConfirmedIncr}!=0"
+                                             th:text="${statistic.currentConfirmedIncr } > 0 ? ${'+'+statistic.currentConfirmedIncr} : ${statistic.currentConfirmedIncr}">-2509</span>
                                     <span th:if="${statistic.currentConfirmedIncr}==null">--</span>
                                 </div>
                             </div>
                         </div>
                         <div class="am-u-lg-4 am-u-md-4 am-u-sm-4">
                             <div class=" statistic-suspectedCount">
-                                <div class="statistic-title"><span>现有疑似</span></div>
-                                <div class="statistic-count"><span style="color: #e4a95d" th:if="${statistic.suspectedCount}!=null"
+                                <div class="statistic-title"><span>境外输入</span></div>
+                                <div class="statistic-count"><span style="color: #e4a95d"
+                                                                   th:if="${statistic.suspectedCount}!=null"
                                                                    th:text="${statistic.suspectedCount}">1418</span>
                                 </div>
                                 <div class="statistic-compare">
-                                    昨日<span style="color: #e4a95d" th:if="${statistic.suspectedIncr}!=null"
-                                            th:text="${statistic.suspectedIncr}>0 ? ${'+'+statistic.suspectedIncr}: ${statistic.suspectedIncr}">+248</span>
+                                    较昨日<span th:if="${statistic.suspectedIncr}!=null and ${statistic.suspectedIncr}==0">无变化</span>
+                                    <span style="color: #e4a95d" th:if="${statistic.suspectedIncr}!=null and ${statistic.suspectedIncr}!= 0"
+                                             th:text="${statistic.suspectedIncr}>0 ? ${'+'+statistic.suspectedIncr}: ${statistic.suspectedIncr}">+248</span>
                                     <span th:if="${statistic.suspectedIncr}==null">--</span>
                                 </div>
                             </div>
                         </div>
                         <div class="am-u-lg-4 am-u-md-4 am-u-sm-4">
                             <div class="statistic-seriousCount">
-                                <div class="statistic-title"><span>现有重症</span></div>
-                                <div class="statistic-count"><span style="color: #2e609d" th:if="${statistic.seriousCount}!=null"
+                                <div class="statistic-title"><span>现存无症状</span></div>
+                                <div class="statistic-count"><span style="color: #2e609d"
+                                                                   th:if="${statistic.seriousCount}!=null"
                                                                    th:text="${statistic.seriousCount}">7664</span></div>
                                 <div class="statistic-compare">
-                                    昨日<span style="color: #2e609d" th:if="${statistic.seriousIncr}!=null"
-                                            th:text="${statistic.seriousIncr}>0 ? ${'+'+statistic.seriousIncr}: ${statistic.seriousIncr}">-288</span>
+                                    较昨日<span th:if="${statistic.seriousIncr}!=null and ${statistic.seriousIncr}==0">无变化</span>
+                                    <span style="color: #2e609d" th:if="${statistic.seriousIncr}!=null and ${statistic.seriousIncr}!=0"
+                                             th:text="${statistic.seriousIncr}>0 ? ${'+'+statistic.seriousIncr}: ${statistic.seriousIncr}">-288</span>
                                     <span th:if="${statistic.seriousIncr}==null">--</span>
                                 </div>
                             </div>
@@ -68,12 +74,14 @@
                         <div class="am-u-lg-4 am-u-md-4 am-u-sm-4">
                             <div class="statistic-confirmedCount">
                                 <div class="statistic-title"><span>累计确诊</span></div>
-                                <div class="statistic-count"><span style="color: red" th:if="${statistic.confirmedCount}!=null"
+                                <div class="statistic-count"><span style="color: red"
+                                                                   th:if="${statistic.confirmedCount}!=null"
                                                                    th:text="${statistic.confirmedCount}">19394</span>
                                 </div>
                                 <div class="statistic-compare">
-                                    昨日<span style="color: red" th:if="${statistic.confirmedIncr}!=null"
-                                            th:text="${statistic.confirmedIncr}>0 ? ${'+'+statistic.confirmedIncr}: ${statistic.confirmedIncr}">+430</span>
+                                    较昨日<span th:if="${statistic.confirmedIncr}!=null and ${statistic.confirmedIncr}==0" th:text="无变化"></span>
+                                    <span style="color: red" th:if="${statistic.confirmedIncr}!=null and ${statistic.confirmedIncr}!=0"
+                                             th:text="${statistic.confirmedIncr}>0 ? ${'+'+statistic.confirmedIncr}: ${statistic.confirmedIncr}">+430</span>
                                     <span th:if="${statistic.confirmedIncr}==null">--</span>
                                 </div>
                             </div>
@@ -81,11 +89,15 @@
                         <div class="am-u-lg-4 am-u-md-4 am-u-sm-4">
                             <div class="statistic-curedCount">
                                 <div class="statistic-title"><span>累计治愈</span></div>
-                                <div class="statistic-count"><span style="color: #51c8b7" th:if="${statistic.curedCount}!=null"
+                                <div class="statistic-count"><span style="color: #51c8b7"
+                                                                   th:if="${statistic.curedCount}!=null"
                                                                    th:text="${statistic.curedCount}">39253</span></div>
                                 <div class="statistic-compare">
-                                    昨日<span style="color: #51c8b7" th:if="${statistic.curedIncr}!=null"
-                                            th:text="${statistic.curedIncr}>0 ? ${'+'+statistic.curedIncr}: ${statistic.curedIncr}">+2892</span>
+                                    较昨日<span
+                                        th:if="${statistic.curedIncr}!=null and ${statistic.curedIncr}==0" th:text="无变化"></span>
+                                    <span style="color: #51c8b7"
+                                          th:if="${statistic.curedIncr}!=null and ${statistic.curedIncr}!=0"
+                                          th:text="${statistic.curedIncr}>0 ? ${'+'+statistic.curedIncr}: ${statistic.curedIncr}">+2892</span>
                                     <span th:if="${statistic.curedIncr}==null">--</span>
                                 </div>
                             </div>
@@ -93,11 +105,15 @@
                         <div class="am-u-lg-4 am-u-md-4 am-u-sm-4">
                             <div class="statistic-deadCount">
                                 <div class="statistic-title"><span>累计死亡</span></div>
-                                <div class="statistic-count"><span style="color: rgba(42,46,48,0.89)" th:if="${statistic.deadCount}!=null"
+                                <div class="statistic-count"><span style="color: rgba(42,46,48,0.89)"
+                                                                   th:if="${statistic.deadCount}!=null"
                                                                    th:text="${statistic.deadCount}">2838</span></div>
                                 <div class="statistic-compare">
-                                    昨日<span style="color: rgba(42,46,48,0.89)" th:if="${statistic.deadIncr}!=null"
-                                            th:text="${statistic.deadIncr}>0 ? ${'+'+statistic.deadIncr}: ${statistic.deadIncr}">+47</span>
+                                    较昨日<span th:if="${statistic.deadIncr}!=null and ${statistic.deadIncr} == 0 "
+                                             th:text="无变化"></span>
+                                    <span style="color: rgba(42,46,48,0.89)"
+                                          th:if="${statistic.deadIncr}!=null and ${statistic.deadIncr} != 0"
+                                          th:text="${statistic.deadIncr}>0 ? ${'+'+statistic.deadIncr}: ${statistic.deadIncr}">+47</span>
                                     <span th:if="${statistic.deadIncr}==null">--</span>
                                 </div>
                             </div>

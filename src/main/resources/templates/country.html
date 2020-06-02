@@ -33,7 +33,8 @@
                                     <span th:if="${statistic.globalStatistics.currentConfirmedCount}==null">--</span>
                                 </div>
                                 <div class="statistic-compare">
-                                    昨日<span style="color: #ff5463" th:if="${statistic.globalStatistics.currentConfirmedIncr}!=null"
+                                    较昨日<span th:if="${statistic.globalStatistics.currentConfirmedIncr}!=null and ${statistic.globalStatistics.currentConfirmedIncr}==0">无变化</span>
+                                    <span style="color: #ff5463" th:if="${statistic.globalStatistics.currentConfirmedIncr}!=null and ${statistic.globalStatistics.currentConfirmedIncr}!=0"
                                             th:text="${statistic.globalStatistics.currentConfirmedIncr } > 0 ? ${'+'+statistic.globalStatistics.currentConfirmedIncr} : ${statistic.globalStatistics.currentConfirmedIncr}">-2509</span>
                                     <span th:if="${statistic.globalStatistics.currentConfirmedIncr}==null">--</span>
                                 </div>
@@ -46,7 +47,8 @@
                                                                    th:text="${statistic.globalStatistics.confirmedCount}">19394</span>
                                 </div>
                                 <div class="statistic-compare">
-                                    昨日<span style="color: red" th:if="${statistic.globalStatistics.confirmedIncr}!=null"
+                                    较昨日 <span th:if="${statistic.globalStatistics.confirmedIncr}!=null and ${statistic.globalStatistics.confirmedIncr}==0">无变化</span>
+                                    <span style="color: red" th:if="${statistic.globalStatistics.confirmedIncr}!=null and ${statistic.globalStatistics.confirmedIncr}!=0"
                                             th:text="${statistic.globalStatistics.confirmedIncr}>0 ? ${'+'+statistic.globalStatistics.confirmedIncr}: ${statistic.globalStatistics.confirmedIncr}">+430</span>
                                     <span th:if="${statistic.globalStatistics.confirmedIncr}==null">--</span>
                                 </div>
@@ -58,7 +60,8 @@
                                 <div class="statistic-count"><span style="color: #51c8b7" th:if="${statistic.globalStatistics.curedCount}!=null"
                                                                    th:text="${statistic.globalStatistics.curedCount}">39253</span></div>
                                 <div class="statistic-compare">
-                                    昨日<span style="color: #51c8b7" th:if="${statistic.globalStatistics.curedIncr}!=null"
+                                    较昨日<span th:if="${statistic.globalStatistics.curedIncr}!=null and ${statistic.globalStatistics.curedIncr}==0">无变化</span>
+                                    <span style="color: #51c8b7" th:if="${statistic.globalStatistics.curedIncr}!=null and ${statistic.globalStatistics.curedIncr}!=0"
                                             th:text="${statistic.globalStatistics.curedIncr}>0 ? ${'+'+statistic.globalStatistics.curedIncr}: ${statistic.globalStatistics.curedIncr}">+2892</span>
                                     <span th:if="${statistic.globalStatistics.curedIncr}==null">--</span>
                                 </div>
@@ -70,7 +73,8 @@
                                 <div class="statistic-count"><span style="color: rgba(42,46,48,0.89)" th:if="${statistic.globalStatistics.deadCount}!=null"
                                                                    th:text="${statistic.globalStatistics.deadCount}">2838</span></div>
                                 <div class="statistic-compare">
-                                    昨日<span style="color: rgba(42,46,48,0.89)" th:if="${statistic.globalStatistics.deadIncr}!=null"
+                                    较昨日<span th:if="${statistic.globalStatistics.deadIncr}!=null and ${statistic.globalStatistics.deadIncr}==0">无变化</span>
+                                    <span style="color: rgba(42,46,48,0.89)" th:if="${statistic.globalStatistics.deadIncr}!=null and ${statistic.globalStatistics.deadIncr}!=0"
                                             th:text="${statistic.globalStatistics.deadIncr}>0 ? ${'+'+statistic.globalStatistics.deadIncr}: ${statistic.globalStatistics.deadIncr}">+47</span>
                                     <span th:if="${statistic.globalStatistics.deadIncr}==null">--</span>
                                 </div>
