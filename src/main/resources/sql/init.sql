@@ -81,7 +81,7 @@ create table `statistic`
 ) engine = InnoDB
   default charset = utf8;
 
-drop table  if exists `global_statistics`;
+drop table if exists `global_statistics`;
 create table `global_statistics`
 (
     id                    int(11) not null,
@@ -95,23 +95,23 @@ create table `global_statistics`
     currentConfirmedIncr  int(11) null default null,
     primary key (`id`) using btree
 ) engine = InnoDB
-  default charset = utf8 ;
+  default charset = utf8;
 
 # 时间线
-drop table  if exists `timeline`;
+drop table if exists `timeline`;
 create table timeline
 (
-    id               int          not null,
-    pubDate          bigint          null,
-    pubDateStr       varchar(255) null,
-    title            varchar(255) null,
-    summary          varchar(255) null,
-    infoSource       varchar(255) null,
-    sourceUrl        varchar(255) null,
-    provinceId       int          null,
+    id         int          not null,
+    pubDate    bigint       null,
+    pubDateStr varchar(255) null,
+    title      varchar(255) null,
+    summary    varchar(255) null,
+    infoSource varchar(255) null,
+    sourceUrl  varchar(255) null,
+    provinceId int          null,
     primary key (`id`) using btree
-)engine = InnoDB
- default charset = utf8;
+) engine = InnoDB
+  default charset = utf8;
 
 
 drop table if exists `country_info`;
@@ -128,8 +128,20 @@ create table `country_info`
     `modifyTime`            bigint(20)   null default null,
     `createTime`            bigint(20)   null default null,
     `countryShortCode`      varchar(255) null default null,
-    `countryType`           int(2)      null default null,
+    `countryType`           int(2)       null default null,
     `continents`            varchar(255) null default null,
     primary key (`locationId`) using btree
-)engine = InnoDB
- default charset = utf8;
+) engine = InnoDB
+  default charset = utf8;
+
+
+CREATE VIEW timeline_limit120 AS
+SELECT *
+FROM timeline
+ORDER BY pubDate DESC
+LIMIT 120;
+
+
+
+SELECT *
+FROM timeline_limit120;

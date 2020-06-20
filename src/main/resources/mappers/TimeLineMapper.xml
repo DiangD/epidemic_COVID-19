@@ -16,9 +16,9 @@
     </insert>
 
     <select id="selectAll" resultType="com.qzh.epidemic.entity.Timeline">
+<!--    从视图查找-->
         select *
-        from timeline
-        order by pubDate desc
+        from `timeline_limit120`
     </select>
 
     <select id="selectLatest5" resultType="Timeline">
